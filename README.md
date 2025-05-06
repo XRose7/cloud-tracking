@@ -9,6 +9,14 @@
 
 ## 25-05-06 updates
 
+### Download Checkpoints
+First, we need to download a model checkpoint. All the model checkpoints can be downloaded by running:
+
+cd checkpoints && \
+./download_ckpts.sh && \
+cd ..
+
+
 使用[`benchmark.py`](./benchmark.py)脚本实现批量统计各模型对单帧图像推理用时，[`mouse-8.mp4`](./mouse-8.mp4)以及[`test.txt`](./test.txt)为处理的视频及目标首帧位置。
 
 |             模型           | 服务器 | 单帧推理时长（ms） | 模型计算量 |
