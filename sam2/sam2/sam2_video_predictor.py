@@ -8,7 +8,7 @@ import warnings
 from collections import OrderedDict
 
 import torch
-
+import time
 from tqdm import tqdm
 
 from sam2.modeling.sam2_base import NO_OBJ_SCORE, SAM2Base
@@ -39,7 +39,8 @@ class SAM2VideoPredictor(SAM2Base):
         self.clear_non_cond_mem_around_input = clear_non_cond_mem_around_input
         self.clear_non_cond_mem_for_multi_obj = clear_non_cond_mem_for_multi_obj
         self.add_all_frames_to_correct_as_cond = add_all_frames_to_correct_as_cond
-
+        self.all_time = 0
+        self.count_frame = 0
     @torch.inference_mode()
     def init_state(
         self,
@@ -699,12 +700,14 @@ class SAM2VideoPredictor(SAM2Base):
                 start_frame_idx + max_frame_num_to_track, num_frames - 1
             )
             processing_order = range(start_frame_idx, end_frame_idx + 1)
-
+        all_time = 0
         for frame_idx in tqdm(processing_order, desc="propagate in video"):
             # We skip those frames already in consolidated outputs (these are frames
             # that received input clicks or mask). Note that we cannot directly run
             # batched forward on them via `_run_single_frame_inference` because the
             # number of clicks on each object might be different.
+            torch.cuda.synchronize()
+            begin_time = time.time()
             if frame_idx in consolidated_frame_inds["cond_frame_outputs"]:
                 storage_key = "cond_frame_outputs"
                 current_out = output_dict[storage_key][frame_idx]
@@ -729,12 +732,18 @@ class SAM2VideoPredictor(SAM2Base):
                     reverse=reverse,
                     run_mem_encoder=True,
                 )
+                torch.cuda.synchronize()
+                end_time = time.time()
+                # print(end_time - begin_time)
+                self.all_time += end_time - begin_time
+                self.count_frame += 1
                 output_dict[storage_key][frame_idx] = current_out
             # Create slices of per-object outputs for subsequent interaction with each
             # individual object after tracking.
             self._add_output_per_object(
                 inference_state, frame_idx, current_out, storage_key
             )
+            
             inference_state["frames_already_tracked"][frame_idx] = {"reverse": reverse}
 
             # Resize the output mask to the original video resolution (we directly use
@@ -742,8 +751,9 @@ class SAM2VideoPredictor(SAM2Base):
             _, video_res_masks = self._get_orig_video_res_output(
                 inference_state, pred_masks
             )
+            # print(all_time / num_frames)
             yield frame_idx, obj_ids, video_res_masks
-
+      
     def _add_output_per_object(
         self, inference_state, frame_idx, current_out, storage_key
     ):
