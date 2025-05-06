@@ -41,7 +41,7 @@ def prepare_frames_or_path(video_path):
 
 def main(args):
     model_cfg = determine_model_cfg(args.model_path)
-    predictor = build_sam2_video_predictor(model_cfg, args.model_path, device="cuda:0")
+    predictor = build_sam2_video_predictor(model_cfg, args.model_path, device="cuda:7")
     frames_or_path = prepare_frames_or_path(args.video_path)
     prompts = load_txt(args.txt_path)
 
@@ -103,6 +103,7 @@ def main(args):
 
                 out.write(img)
 
+        print(f"AVERAGE: {predictor.all_time / predictor.count_frame}s")
         if args.save_to_video:
             out.release()
 
