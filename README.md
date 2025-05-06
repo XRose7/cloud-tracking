@@ -7,6 +7,10 @@
 * airplane-6的[预测边界框信息](./examples/inference/LaSOT-results/samurai/samurai_base_plus/airplane-6.txt)及其[可视化](./examples/inference/LaSOT-visualization/samurai/base_plus/airplane-6.mp4)
 * airplane-19的[预测边界框信息](/examples/inference/LaSOT-results/samurai/samurai_base_plus/airplane-19.txt)及其[可视化](./examples/inference/LaSOT-visualization/samurai/base_plus/airplane-19.mp4)
 
+## 25-05-06 updates
+
+使用[`benchmark.py`](./benchmark.py)脚本实现批量统计各模型对单帧图像推理用时，[`mouse-8.mp4`](./mouse-8.mp4)以及[`test.txt`](./test.txt)为处理的视频及目标首帧位置。
+
 |             模型           | 服务器 | 单帧推理时长（ms） | 模型计算量 |
 |----------------------------|--------|--------------------|------------|
 |  sam2.1_hiera_base_plus.pt |  4090  |        32.4        |            |
