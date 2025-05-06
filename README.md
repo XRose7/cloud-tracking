@@ -34,3 +34,5 @@ cd ..
 
 conda env export > environment.yml：[`environment.yml`](./environment.yml)
 conda list：[`environment.txt`](./environment.txt)
+
+pip freeze > requirements.txt: [`requirements.txt`](./requirements.txt)
