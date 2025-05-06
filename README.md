@@ -33,6 +33,5 @@ cd ..
 使用[`demo_two_gpu.py`](./scripts/demo_two_gpu.py)实现在不同gpu上加载不同模型进行推理，推理命令为：python demo_two_gpu.py --video1 video1.mp4 --model1 moedl1.pt -- out1 out1.mp4 --video2 video2.mp4 --model2 moedl2.pt --out2 out2.mp4。
 
 conda env export > environment.yml：[`environment.yml`](./environment.yml)
-conda list：[`environment.txt`](./environment.txt)
 
 pip freeze > requirements.txt: [`requirements.txt`](./requirements.txt)
