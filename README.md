@@ -35,3 +35,7 @@ cd ..
 conda env export > environment.yml：[`environment.yml`](./environment.yml)
 
 pip freeze > requirements.txt: [`requirements.txt`](./requirements.txt)
+
+## 25-05-12 updates
+
+使用prometheus + grafana进行可视化模型性能，为对虚拟机上0-100随机数（模拟帧率）以及CPU占用率的监测视频。
