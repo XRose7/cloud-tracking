@@ -38,4 +38,6 @@ pip freeze > requirements.txt: [requirements.txt](./requirements.txt)
 
 ## 25-05-12 updates
 
-使用prometheus + grafana可视化模型性能，[`monitor_example`](./monitor_example.py)：对虚拟机上0-100随机数（模拟帧率）以及CPU占用率监测，结果：[监测视频.MP4](./监测视频.mp4)，只需在[`demo.py`](./scripts/demo.py)的for循环（77行）下暴露单帧处理时长等信息即可。
+使用prometheus + grafana可视化模型性能。
+
+[`monitor_example.py`](./monitor_example.py)：对虚拟机上0-100随机数（模拟帧率）以及CPU占用率监测，结果见[监测视频.MP4](./监测视频.mp4)。
