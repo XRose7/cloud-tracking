@@ -30,6 +30,32 @@ cd ..
 |    sam2.1_hiera_tiny.pt    |  4090  |        25.3        |            |
 |                            |  2080  |        71.2        |            |
 
+
+NVIDIA Jetson Orin 64GB 测试结果：
+Model                                                 Avg Time (s)
+-----------------------------------------------------------------
+sam2/checkpoints/sam2.1_hiera_base_plus.pt                  0.4886
+sam2/checkpoints/sam2.1_hiera_tiny.pt                       0.3099
+sam2/checkpoints/sam2.1_hiera_small.pt                      0.3023
+sam2/checkpoints/sam2.1_hiera_large.pt                      0.6760
+ 
+Jetson特殊配置: 
+torch需要官网下载对应版本的whl进行pip安装
+decord需要clone git repo到本地build
+一些建议：
+benchmark.py
+video_path txt_path使用相对路径
+缺少 import sys
+最好加上检查
+   if result.returncode != 0:
+       print(result.stderr)
+requirements.txt 可能包含了本项目不需要的很多依赖，建议只加必须项
+README里面
+cd checkpoints 应该是 cd sam2/checkpoints/
+
+
+
+
 使用[`demo_two_gpu.py`](./scripts/demo_two_gpu.py)实现在不同gpu上加载不同模型进行推理，推理命令为：python demo_two_gpu.py --video1 video1.mp4 --model1 moedl1.pt -- out1 out1.mp4 --video2 video2.mp4 --model2 moedl2.pt --out2 out2.mp4。
 
 conda env export > environment.yml：[environment.yml](./environment.yml)
