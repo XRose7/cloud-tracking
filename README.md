@@ -23,25 +23,22 @@ cd ..
 |----------------------------|--------|--------------------|------------|
 |  sam2.1_hiera_base_plus.pt |  4090  |        32.4        |            |
 |                            |  2080  |        90.8        |            |
+|                            |  NVIDIA Jetson Orin 64GB  |        488.6        |            |
 |    sam2.1_hiera_large.pt   |  4090  |        43.9        |            |
 |                            |  2080  |       139.8        |            |
+|                            |  NVIDIA Jetson Orin 64GB  |        676.0        |            |
 |    sam2.1_hiera_small.pt   |  4090  |        27.5        |            |
 |                            |  2080  |        75.2        |            |
+|                            |  NVIDIA Jetson Orin 64GB  |        302.3        |            |
 |    sam2.1_hiera_tiny.pt    |  4090  |        25.3        |            |
 |                            |  2080  |        71.2        |            |
+|                            |  NVIDIA Jetson Orin 64GB  |        309.9        |            |
 
-
-NVIDIA Jetson Orin 64GB 测试结果：
-Model                                                 Avg Time (s)
------------------------------------------------------------------
-sam2/checkpoints/sam2.1_hiera_base_plus.pt                  0.4886
-sam2/checkpoints/sam2.1_hiera_tiny.pt                       0.3099
-sam2/checkpoints/sam2.1_hiera_small.pt                      0.3023
-sam2/checkpoints/sam2.1_hiera_large.pt                      0.6760
  
 Jetson特殊配置: 
-torch需要官网下载对应版本的whl进行pip安装
+torch需要官网下载对应版本的whl进行pip安装;
 decord需要clone git repo到本地build
+
 一些建议：
 benchmark.py
 video_path txt_path使用相对路径
