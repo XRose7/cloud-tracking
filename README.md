@@ -17,7 +17,7 @@ cd sam2/checkpoints/ && \
 cd ..
 
 
-使用[`benchmark.py`](./benchmark.py)脚本实现批量统计各模型对单帧图像推理用时，[`test.mp4`](./test.mp4)以及[`test.txt`](./test.txt)为处理的视频及目标首帧位置。
+使用[`benchmark.py`](./benchmark.py)脚本实现批量统计各模型对单帧图像推理用时，[`test.mp4`](./test.mp4)以及[`test.txt`](./test.txt)为处理的视频及目标首帧位置，python benchmark.py
 
 |             模型           | 服务器 | 单帧推理时长（ms） | 模型计算量 |
 |----------------------------|--------|--------------------|------------|
@@ -34,30 +34,13 @@ cd ..
 |                            |  2080  |        71.2        |            |
 |                            |  NVIDIA Jetson Orin 64GB  |        309.9        |            |
 
- 
 Jetson特殊配置: 
 torch需要官网下载对应版本的whl进行pip安装;
 decord需要clone git repo到本地build
 
-一些建议：
+使用[`demo_two_gpu.py`](./scripts/demo_two_gpu.py)实现在不同gpu上加载不同模型进行推理，命令为：python demo_two_gpu.py --video1 video1.mp4 --model1 moedl1.pt -- out1 out1.mp4 --video2 video2.mp4 --model2 moedl2.pt --out2 out2.mp4。
 
-benchmark.py
-video_path txt_path使用相对路径
-
-缺少 import sys
-最好加上检查
-   if result.returncode != 0:
-       print(result.stderr)
-       
-requirements.txt 可能包含了本项目不需要的很多依赖，建议只加必须项
-
-README里面
-cd checkpoints 应该是 cd sam2/checkpoints/
-
-
-
-
-使用[`demo_two_gpu.py`](./scripts/demo_two_gpu.py)实现在不同gpu上加载不同模型进行推理，推理命令为：python demo_two_gpu.py --video1 video1.mp4 --model1 moedl1.pt -- out1 out1.mp4 --video2 video2.mp4 --model2 moedl2.pt --out2 out2.mp4。
+# 环境：
 
 conda env export > environment.yml：[environment.yml](./environment.yml)
 
@@ -68,3 +51,18 @@ pip freeze > requirements.txt: [requirements.txt](./requirements.txt)
 使用prometheus + grafana可视化模型性能。
 
 [`monitor_example.py`](./monitor_example.py)：对虚拟机上0-100随机数（模拟帧率）以及CPU占用率监测，结果见[监测视频.MP4](./监测视频.mp4)，后续只需在[`demo.py`](./scripts/demo.py)的for循环内部暴露帧率等指标即可。
+
+## 一些建议：
+
+benchmark.py
+video_path txt_path使用相对路径（√）
+
+缺少 import sys
+最好加上检查
+   if result.returncode != 0:
+       print(result.stderr)
+       
+requirements.txt 可能包含了本项目不需要的很多依赖，建议只加必须项
+
+README里面
+cd checkpoints 应该是 cd sam2/checkpoints/（√）
