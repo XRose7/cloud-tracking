@@ -12,7 +12,7 @@
 ### Download Checkpoints
 First, we need to download a model checkpoint. All the model checkpoints can be downloaded by running:
 
-cd checkpoints && \
+cd sam2/checkpoints/ && \
 ./download_ckpts.sh && \
 cd ..
 
@@ -40,13 +40,17 @@ torch需要官网下载对应版本的whl进行pip安装;
 decord需要clone git repo到本地build
 
 一些建议：
+
 benchmark.py
 video_path txt_path使用相对路径
+
 缺少 import sys
 最好加上检查
    if result.returncode != 0:
        print(result.stderr)
+       
 requirements.txt 可能包含了本项目不需要的很多依赖，建议只加必须项
+
 README里面
 cd checkpoints 应该是 cd sam2/checkpoints/
 
