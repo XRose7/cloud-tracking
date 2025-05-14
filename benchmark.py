@@ -4,8 +4,8 @@ import re
 
 def main():
     # paths to use in the benchmark
-    video_path = "/data/shuai/samurai/visualization/samurai/base_plus/mouse-8.mp4"
-    txt_path = "/data/shuai/samurai/test.txt"
+    video_path = "./test.mp4"
+    txt_path = "./test.txt"
 
     # list of model checkpoint files to test
     model_paths = [
