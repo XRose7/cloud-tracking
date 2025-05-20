@@ -33,6 +33,8 @@ cd ..
 |                       |  large  |   676.0   |         |
 |                       |  base   |   488.6   |         |
 
+使用[`demo.py`](./scripts/demo.py)中注释掉的determine_model_cfg()函数进行sam2推理用时的统计。
+
 Jetson特殊配置: 
 torch需要官网下载对应版本的whl进行pip安装;
 decord需要clone git repo到本地build
