@@ -1,11 +1,12 @@
 import subprocess
 import re
+import sys
 
 
 def main():
     # paths to use in the benchmark
-    video_path = "./test.mp4"
-    txt_path = "./test.txt"
+    video_path = "mouse-8.mp4"
+    txt_path = "test.txt"
 
     # list of model checkpoint files to test
     model_paths = [
@@ -22,6 +23,8 @@ def main():
         run_times = []
         for run_idx in range(1, 6):
             print(f"Processing Model {idx}/{len(model_paths)}: '{model_path}'  -  Run {run_idx}/5")
+            # print(video_path)
+            # print(txt_path)
 
             # invoke the demo script and capture its output
             result = subprocess.run(
@@ -36,7 +39,12 @@ def main():
                 capture_output=True,
                 text=True
             )
-
+            
+            if result.returncode != 0:
+              print("Subprocess failed:")
+              print(result.stderr)
+              sys.exit(1)
+	     
             # parse the printed average time
             match = re.search(r"AVERAGE:\s*([0-9\.]+)s", result.stdout)
             if not match:
