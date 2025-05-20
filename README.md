@@ -18,20 +18,20 @@ cd ..
 
 使用[`benchmark.py`](./benchmark.py)脚本实现批量统计各模型对单帧图像推理用时，[`test.mp4`](./test.mp4)以及[`test.txt`](./test.txt)为处理的视频及目标首帧位置，命令：python benchmark.py，统计结果如下表：
 
-|             模型           | 服务器                     | 单帧推理时长（ms）                     | 模型计算量 |
-|----------------------------|---------------------------|---------------------------------------|------------|
-|  sam2.1_hiera_base_plus.pt |  4090                     |        32.4                           |            |
-|                            |  2080                     |        90.8                           |            |
-|                            |  NVIDIA Jetson Orin 64GB  |        488.6                          |            |
-|    sam2.1_hiera_large.pt   |  4090                     |        43.9                           |            |
-|                            |  2080                     |       139.8                           |            |
-|                            |  NVIDIA Jetson Orin 64GB  |        676.0                          |            |
-|    sam2.1_hiera_small.pt   |  4090                     |        27.5                           |            |
-|                            |  2080                     |        75.2                           |            |
-|                            |  NVIDIA Jetson Orin 64GB  |        302.3                          |            |
-|    sam2.1_hiera_tiny.pt    |  4090                     |        25.3                           |            |
-|                            |  2080                     |        71.2                           |            |
-|                            |  NVIDIA Jetson Orin 64GB  |        309.9                          |            |
+|          硬件         |   模型   | sam2（ms）|samurai（ms）|
+|-----------------------|---------|-----------|-------------|
+|          4090​​	      |  tiny   |    25.3   |     20.1    |
+|                       |  small  |    27.5   |     24.2    |
+|                       |  large  |    43.9   |     42.0    |
+|                       |  base   |    32.4   |     26.9    |
+|          2080​​	      |  tiny   |    71.2   |     63.0    |
+|                       |  small  |    75.2   |     68.0    |
+|                       |  large  |   139.8   |    131.5    |
+|                       |  base   |    90.8   |     84.3    |
+|NVIDIA Jetson Orin​​ 64GB​​|  tiny   |   309.9   |         |
+|                       |  small  |   302.3   |         |
+|                       |  large  |   676.0   |         |
+|                       |  base   |   488.6   |         |
 
 Jetson特殊配置: 
 torch需要官网下载对应版本的whl进行pip安装;
@@ -71,3 +71,5 @@ requirements.txt 可能包含了本项目不需要的很多依赖，建议只加
 
 README里面
 cd checkpoints 应该是 cd sam2/checkpoints/（√）
+
+
