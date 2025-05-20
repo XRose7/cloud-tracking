@@ -64,7 +64,7 @@ pip freeze > requirements.txt: [requirements.txt](./requirements.txt)
 benchmark.py
 video_path txt_path使用相对路径（√）
 
-缺少 import sys
+缺少 import sys（√）
 最好加上检查
    if result.returncode != 0:
        print(result.stderr)
