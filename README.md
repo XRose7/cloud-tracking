@@ -61,7 +61,7 @@ python [`server.py`](./scripts/server.py)启动 gRPC 服务
 
 python [`client.py`](./client/client.py)通过 gRPC 调用远程服务器执行推理逻辑
 
-## 25-05-12 updates
+## 25-05-30 updates
 
 使用prometheus + grafana可视化模型性能。
 
