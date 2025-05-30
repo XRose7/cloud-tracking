@@ -43,22 +43,6 @@ decord需要clone git repo到本地build
 
 使用[`demo_on_two_gpu.py`](./scripts/demo_on_two_gpu.py)实现在不同gpu上加载不同模型进行推理，命令为：python demo_on_two_gpu.py --video1 video1.mp4 --model1 moedl1.pt -- out1 out1.mp4 --video2 video2.mp4 --model2 moedl2.pt --out2 out2.mp4。
 
-## 25-05-12 updates
-
-使用prometheus + grafana可视化模型性能。
-
-[`demo_with_visualization.py`](./scripts/demo_with_visualization.py)：对推理过程中单帧处理时长、平均处理时长、GPU占用率进行可视化。
-
-可视化组件具体配置见[visualization_deploy.txt](./visualization/visualization_deploy.txt)。
-
-python scripts/demo_with_visualization.py --video_path examples/inference/test.mp4 --txt_path examples/inference/test.txt
-
-cd prometheus-3.4.0.windows-amd64 && 
-./prometheus --config.file=prometheus.yml
-
-cd grafana-v12.0.1 && 
-./bin/grafana-server
-
 ## 25-05-27 updates
 
 服务端、客户端：pip install grpcio grpcio-tools
@@ -76,6 +60,22 @@ python [`server.py`](./scripts/server.py)启动 gRPC 服务
 客户端：cd [client/](./client)
 
 python [`client.py`](./client/client.py)通过 gRPC 调用远程服务器执行推理逻辑
+
+## 25-05-12 updates
+
+使用prometheus + grafana可视化模型性能。
+
+[`demo_with_visualization.py`](./scripts/demo_with_visualization.py)：对推理过程中单帧处理时长、平均处理时长、GPU占用率进行可视化。
+
+可视化组件具体配置见[visualization_deploy.txt](./visualization/visualization_deploy.txt)。
+
+python scripts/demo_with_visualization.py --video_path examples/inference/test.mp4 --txt_path examples/inference/test.txt
+
+cd prometheus-3.4.0.windows-amd64 && 
+./prometheus --config.file=prometheus.yml
+
+cd grafana-v12.0.1 && 
+./bin/grafana-server
 
 # 环境：
 
