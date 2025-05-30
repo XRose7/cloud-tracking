@@ -47,7 +47,7 @@ decord需要clone git repo到本地build
 
 使用prometheus + grafana可视化模型性能。
 
-[`demo_with_visualization`](./scripts/demo_with_visualization.py)：对推理过程中单帧处理时长、平均处理时长、GPU占用率进行可视化。
+[`demo_with_visualization.py`](./scripts/demo_with_visualization.py)：对推理过程中单帧处理时长、平均处理时长、GPU占用率进行可视化。
 
 可视化组件具体配置见[visualization_deploy.txt](./visualization/visualization_deploy.txt)。
 
