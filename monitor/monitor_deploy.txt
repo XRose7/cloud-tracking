@@ -1,0 +1,14 @@
+通过网盘分享的文件：monitor.zip
+链接: https://pan.baidu.com/s/1fz8b9t0o-dYAdA3FkyFt7w?pwd=j984 提取码: j984
+
+解压至根目录
+
+启动prometheus:
+	cd prometheus-3.4.0.windows-amd64
+	./prometheus --config.file=prometheus.yml
+
+启动grafana:
+	cd grafana-v12.0.1
+	./bin/grafana-server
+
+浏览器进入http://localhost:3000/，设置数据源为prometheus,新建仪表盘，对scripts/demo_with_monitor.py中暴露的指标进行监测，监测视频见examples/monitor/monitor.mp4
