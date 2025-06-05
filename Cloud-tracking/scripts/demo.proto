@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+service SamService {
+  rpc RunDemo(DemoRequest) returns (stream DemoResponse);
+}
+
+message DemoRequest {
+  string video_path = 1;
+  string txt_path = 2;
+  string model_path = 3;
+}
+
+message DemoResponse {
+  int32 frame_idx = 1;
+  repeated float maskmem_features = 2;
+  repeated float maskmem_pos_enc = 3;
+  repeated int32 maskmem_features_shape = 4;
+}

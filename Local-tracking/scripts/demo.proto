@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+service VideoProcessor {
+  rpc ProcessVideo(stream VideoChunk) returns (stream VideoChunk);
+}
+
+message VideoChunk {
+  string filename = 1;
+  bytes content = 2;
+}
