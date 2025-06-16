@@ -1,0 +1,4 @@
+benchmark.py && benchmark_orin.py：
+	位置：将其与./examples/inference/inference.py同时移动至./scripts目录下
+	命令：python ./scripts/benchmark.py
+	作用：对base、tiny、small、large四个模型进行批量推理，用以统计各模型对单帧图片的平均处理用时，通过更改inferenec.py文件中determine_model_cfg()函数来启用sam2或samurai推理，通过更改./sam2/sam2/configs目录下配置文件的image_size参数来更改分辨率为1080/720/480
